@@ -1,0 +1,6 @@
+{
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"id\": \"1\",\"name\": \"CategoryName\",\"images\": [\"image1.jpg\",\"image2.jpg\"],\"description\": \"Category Description\"}"
+}

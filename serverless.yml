@@ -7,10 +7,29 @@ provider:
   runtime: nodejs14.x
 
 functions: 
-  hello:
-    handler: src/hello.handler
+  # hello:
+  #   handler: src/hello.handler
+  #   events:
+  #     - httpApi: GET /hello
+
+  listCategories:
+    handler: src/functions/category/listCategories/handler.listCategories
     events:
-      - httpApi: GET /hello
+      - httpApi: GET /listCategories
+  createCategory:
+    handler: src/functions/category/createCategory/handler.createCategory
+    events:
+      - httpApi: POST /createCategory
+
+  deleteCategory: 
+    handler: src/functions/category/deleteCategory/handler.deleteCategory
+    events:
+      - httpApi: DELETE /deleteCategory   
+
+  updateCategory: 
+    handler: src/functions/category/updateCategory/handler.updateCategory
+    events:
+      - httpApi: PUT /updateCategory
 
 plugins:
   - serverless-esbuild
@@ -20,3 +39,18 @@ custom:
   esbuild: 
     bundle: true
     minify: true
+
+resources:
+  Resources:
+    Category:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: Category
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH       
+    
