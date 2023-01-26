@@ -9,8 +9,10 @@ This project uses AWS Lambda and the Serverless Framework to create a set of fun
 
 ## Setup
 1) Clone the repository
-   
-```git clone https://github.com/your-username/your-repo.git```
+
+When using SSH on Github:
+
+```git clone git@github.com:braian85/aws-lambda-ts-task.git```
 
 2) Install dependencies
 
