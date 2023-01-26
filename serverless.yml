@@ -7,11 +7,6 @@ provider:
   runtime: nodejs14.x
 
 functions: 
-  # hello:
-  #   handler: src/hello.handler
-  #   events:
-  #     - httpApi: GET /hello
-
   listCategories:
     handler: src/functions/category/listCategories/handler.listCategories
     events:
