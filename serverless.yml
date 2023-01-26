@@ -1,6 +1,6 @@
 service: hello
 
-useDotenv: true
+# useDotenv: true
 
 provider:
   name: aws

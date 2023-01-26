@@ -8,6 +8,7 @@ interface Product {
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 export const deleteProduct = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+  if(!event.body) return { statusCode: 400, body: 'Bad request' };
   const { id }: Product = JSON.parse(event.body);
   const params = {
     TableName: 'Product',
