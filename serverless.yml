@@ -30,6 +30,23 @@ functions:
     handler: src/functions/category/updateCategory/handler.updateCategory
     events:
       - httpApi: PUT /updateCategory
+  createProduct:
+    handler: src/functions/product/createProduct/handler.createProduct
+    events:
+      - httpApi: POST /createProduct
+  listProducts:
+    handler: src/functions/product/listProducts/handler.listProducts
+    events:
+      - httpApi: GET /listProducts
+  deleteProduct:
+    handler: src/functions/product/deleteProduct/handler.deleteProduct
+    events:
+      - httpApi: DELETE /deleteProduct
+  updateProduct:
+    handler: src/functions/product/updateProduct/handler.updateProduct
+    events:
+      - httpApi: PUT /updateProduct
+ 
 
 plugins:
   - serverless-esbuild
@@ -52,5 +69,16 @@ resources:
             AttributeType: S
         KeySchema:
           - AttributeName: id
-            KeyType: HASH       
+            KeyType: HASH    
+    Product:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: Product
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH   
     

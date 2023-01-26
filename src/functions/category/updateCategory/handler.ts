@@ -15,7 +15,7 @@ export const updateCategory = async (
 ): Promise<APIGatewayProxyResult> => {
   //parse event body to get category data
   if (!event.body)
-    return { statusCode: 400, body: 'Bad request - Handler bueno' }
+    return { statusCode: 400, body: 'Bad request'}
   const { id, description, images, name }: Category = JSON.parse(event.body)
   const params = {
     TableName: 'Category',

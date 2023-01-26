@@ -14,7 +14,10 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient()
 export const createProduct = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
+  if (!event.body) return { statusCode: 400, body: 'Bad request - no body' }
   const { name, images, description, price }: Product = JSON.parse(event.body)
+  if (!name || !images || !description || !price)
+    return { statusCode: 400, body: 'Bad request - missing fields' }
   //generate unique id for the product
   const id = uuidv4()
 
@@ -29,14 +32,14 @@ export const createProduct = async (
     },
   }
 
-  // await dynamoDb.put(params).promise()
+  await dynamoDb.put(params).promise()
 
   return {
     statusCode: 201,
     body: JSON.stringify({
       message: 'Product created successfully',
       id: id,
-      params
+      params,
     }),
   }
 }
